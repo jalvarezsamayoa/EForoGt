@@ -4,6 +4,7 @@ require 'rubygems'
 #require 'mongo'
 
 gem 'rails', '3.0.9'
+gem 'bson_ext'
 gem 'mongo'
 gem 'mongo_ext'
 gem 'mongo_mapper'
