@@ -1,5 +1,5 @@
 :hosts:
-  - :host: http://ec2-184-72-81-42.compute-1.amazonaws.com
+  - :host: ec2-184-72-81-42.compute-1.amazonaws.com
     :port: 8080
     :secret: FCo7t7397E5k46s
     :secure: false
