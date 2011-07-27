@@ -11,7 +11,7 @@ Evento.delete_all
 Candidato.delete_all
 Pregunta.delete_all
 
-Evento.create(:estado => 0, :pregunta => nil, :candidato => nil)
+
 
 (1..20).each do |i|
   Pregunta.create(:orden => i,
@@ -28,3 +28,5 @@ end
 end
 
 Promedio.reset
+
+Evento.create(:estado => 0, :pregunta => Pregunta.first.id, :candidato => Candidato.first.id)

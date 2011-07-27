@@ -4,7 +4,7 @@ if Rails.env.production?
   MongoMapper.database.authenticate('jalvarezsamayoa', 'Bless777')
 else
   MongoMapper.connection = Mongo::Connection.new('localhost', 27017)
-  MongoMapper.database = "#eforo-#{Rails.env}"
+  MongoMapper.database = "eforogt"
 end
 
 if defined?(PhusionPassenger)
