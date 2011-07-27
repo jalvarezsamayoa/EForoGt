@@ -1,0 +1,41 @@
+- @forview = "SHOW"
+= render :partial=>"breadcrumbs"
+
+- if @candidato.errors.any?
+  .error
+    %ul
+    - @candidato.errors.full_messages.each do |msg|
+      %li= msg
+
+.show
+  %h2= Candidato.human_name
+
+  %div{:id=>"options"}
+    = button_new(new_admin_candidato_path)
+    = button_edit(edit_admin_candidato_path(@candidato))
+    = button_delete(admin_candidato_path(@candidato))
+    = button_cancel(admin_candidatos_path)
+    %br
+
+  .box
+    %table
+      %colgroup.show-table-header
+      %colgroup.show-table-data
+      %tr
+        %th= label :_id, Candidato.human_attribute_name(:_id)
+        %td= @candidato._id
+      %tr
+        %th= label :codigo, Candidato.human_attribute_name(:codigo)
+        %td= @candidato.codigo
+      %tr
+        %th= label :nombre, Candidato.human_attribute_name(:nombre)
+        %td= @candidato.nombre
+      %tr
+        %th= label :partido, Candidato.human_attribute_name(:partido)
+        %td= @candidato.partido
+      %tr
+        %th= label :url, Candidato.human_attribute_name(:url)
+        %td= @candidato.url
+      %tr
+        %th= label :slug, Candidato.human_attribute_name(:slug)
+        %td= @candidato.slug

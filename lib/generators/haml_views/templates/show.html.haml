@@ -1,0 +1,28 @@
+- @forview = "SHOW"
+= render :partial=>"breadcrumbs"
+
+- if @<%= item %>.errors.any?
+  .error
+    %ul
+    - @<%= item %>.errors.full_messages.each do |msg|
+      %li= msg
+
+.show
+  %h2= <%= model %>.model_name.human
+
+  %div{:id=>"options"}
+    = button_new(new_<%= admin_path(true) %><%= item %>_path)
+    = button_edit(edit_<%= admin_path(true) %><%= item %>_path(@<%= item %>))
+    = button_delete(<%= admin_path %><%= item %>_path(@<%= item %>))
+    = button_cancel(<%= admin_path %><%= items %>_path)
+    %br
+
+  .box
+    %table
+      %colgroup.show-table-header
+      %colgroup.show-table-data
+      <%- attributes.each do |a| -%>
+      %tr
+        %th= label :<%= a[0] %>, <%= model %>.human_attribute_name(:<%= a[0] %>)
+        %td= @<%= item %>.<%= a[0] %>
+      <%- end %>

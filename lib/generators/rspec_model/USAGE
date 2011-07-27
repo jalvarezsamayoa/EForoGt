@@ -1,0 +1,8 @@
+Description:
+    Genera un spec basico para un modelo.
+
+Example:
+    rails generate rspec_model ModelName
+
+    This will create:
+        spec/model/model_name_spec.rb

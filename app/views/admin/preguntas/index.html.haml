@@ -1,0 +1,18 @@
+= render :partial => "breadcrumbs"
+.listing
+  %h2= 'Preguntas'
+  %div{:id => "options"}
+    = button_new(new_admin_pregunta_path)
+    = render :partial => 'shared/findbox', :locals => {:url => admin_preguntas_path}
+  %table.minimalist-b
+    %thead
+      %tr
+        %th= 'Orden'
+        %th= 'Texto'
+    %tbody
+      - for pregunta in @preguntas
+        %tr
+          %td= pregunta.orden
+          %td= link_to pregunta.nombre, admin_pregunta_path(pregunta)
+  = will_paginate @preguntas
+  

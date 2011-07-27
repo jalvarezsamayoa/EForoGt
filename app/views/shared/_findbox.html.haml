@@ -1,0 +1,5 @@
+#findbox
+  = form_tag url, :method=>:get do
+    = yield
+    = text_field 'search', '', :id=>'search'
+    = submit_tag 'Buscar'

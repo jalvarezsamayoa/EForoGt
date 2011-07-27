@@ -1,0 +1,30 @@
+- @forview = "SHOW"
+= render :partial=>"breadcrumbs"
+
+- if @evento.errors.any?
+  .error
+    %ul
+    - @evento.errors.full_messages.each do |msg|
+      %li= msg
+
+.show
+  %h2= Evento.human_name
+
+  %div{:id=>"options"}
+    = button_new(new_admin_evento_path)
+    = button_edit(edit_admin_evento_path(@evento))
+    = button_delete(admin_evento_path(@evento))
+    = button_cancel(admin_eventos_path)
+    %br
+
+  .box
+    %table
+      %colgroup.show-table-header
+      %colgroup.show-table-data
+      %tr
+        %th= label :_id, Evento.human_attribute_name(:_id)
+        %td= @evento._id
+      %tr
+        %th= label :estado, Evento.human_attribute_name(:estado)
+        %td= @evento.estado
+

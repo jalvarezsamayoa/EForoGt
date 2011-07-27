@@ -1,0 +1,8 @@
+Description:
+    Generacion de vistas básicas en formato Haml
+
+Example:
+    rails generate haml_views ModelName
+
+    This will create:
+        what/will/it/create

@@ -1,0 +1,4 @@
+- form.inputs do
+  <%- attributes.each do |a| -%>
+  = form.input :<%= a[0] %>
+  <%- end -%>

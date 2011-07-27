@@ -1,0 +1,16 @@
+= render :partial => "breadcrumbs"
+.listing
+  %h2= Evento.model_name.human.pluralize
+  %div{:id => "options"}
+    = button_new(new_admin_evento_path)
+    = render :partial => 'shared/findbox', :locals => {:url => admin_eventos_path}
+  %table.minimalist-b
+    %thead
+      %tr
+        %th= Evento.human_attribute_name(:estado)
+    %tbody
+      - for evento in @eventos
+        %tr
+          %td= link_to evento.estado, admin_evento_path(evento)
+  = will_paginate @eventos
+  

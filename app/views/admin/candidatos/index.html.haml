@@ -1,0 +1,16 @@
+= render :partial => "breadcrumbs"
+.listing
+  %h2= Candidato.human_name.pluralize
+  %div{:id => "options"}
+    = button_new(new_admin_candidato_path)
+    =# render :partial => 'shared/findbox', :locals => {:url => admin_candidatos_path}
+  %table.minimalist-b
+    %thead
+      %tr
+        %th= Candidato.human_attribute_name(:nombre)
+    %tbody
+      - for candidato in @candidatos
+        %tr
+          %td= link_to candidato.nombre, admin_candidato_path(candidato)
+  =# will_paginate @candidatos
+  

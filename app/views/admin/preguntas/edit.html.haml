@@ -1,0 +1,12 @@
+- @forview = "EDIT"
+= render :partial=>"breadcrumbs"
+
+.mantform
+  %h2
+    Editar 
+    = Pregunta.model_name.human
+
+  - semantic_form_for @pregunta, :url => admin_pregunta_path(@pregunta) do |form|
+    = form.semantic_errors
+    = render :partial => 'form', :locals => {:form => form}
+    = buttons_update(admin_preguntas_path)

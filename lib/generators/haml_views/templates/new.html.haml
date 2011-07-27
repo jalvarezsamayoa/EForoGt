@@ -1,0 +1,12 @@
+- @forview = "NEW"
+= render :partial=>"breadcrumbs"
+
+.mantform
+  %h2
+    Nuevo 
+    = <%= model %>.model_name.human
+
+  - semantic_form_for @<%= item %><%= admin_url %> do |form|
+    = form.semantic_errors
+    = render :partial => 'form', :locals => {:form => form}
+    = buttons_create(<%= admin_path %><%= items %>_path)

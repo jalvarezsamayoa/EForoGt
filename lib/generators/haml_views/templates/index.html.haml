@@ -1,0 +1,16 @@
+= render :partial => "breadcrumbs"
+.listing
+  %h2= <%= model %>.model_name.human.pluralize
+  %div{:id => "options"}
+    = button_new(new_<%= admin_path(true) %><%= item %>_path)
+    = render :partial => 'shared/findbox', :locals => {:url => <%= admin_path %><%= items %>_path}
+  %table.minimalist-b
+    %thead
+      %tr
+        %th= <%= model %>.human_attribute_name(:<%= attribute_name %>)
+    %tbody
+      - for <%= item %> in @<%= items %>
+        %tr
+          %td= link_to <%= item %>.<%= attribute_name %>, <%= admin_path %><%= item %>_path(<%= item %>)
+  = will_paginate @<%= items %>
+  

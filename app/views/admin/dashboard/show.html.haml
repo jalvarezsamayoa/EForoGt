@@ -1,0 +1,28 @@
+%h1 Panel de Control
+
+
+= link_to 'Reiniciar votos evento.', reset_admin_evento_path(@evento), :confirm => "Esta seguro?", :class => 'button negative'
+%hr
+
+%h2 Cambiar estado de Evento
+.mantform
+  = semantic_form_for @evento, :url => admin_evento_path(@evento) do |form|
+    = form.inputs do
+      = form.input :estado, :as => :select, :collection => [['Inactivo', 0], ['Activo', 1], ['Finalizado', 2]]
+    = buttons_update(admin_eventos_path)
+
+
+%h2 Cambiar Pregunta Actual
+.mantform
+  = semantic_form_for @evento, :url => admin_evento_path(@evento) do |form|
+    = form.inputs do
+      = form.input :pregunta, :as => :select, :collection => @preguntas
+    = buttons_update(admin_eventos_path)
+
+%h2 Cambiar Candidato Actual
+.mantform
+  = semantic_form_for @evento, :url => admin_evento_path(@evento) do |form|
+    = form.inputs do
+      = form.input :candidato, :as => :select, :collection => @candidatos
+    = buttons_update(admin_eventos_path)
+      
