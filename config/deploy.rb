@@ -7,11 +7,11 @@ set :rvm_ruby_string, '1.9.2'
 set :rvm_bin_path, "/usr/local/bin"
 
 set :application, "eforogt"
-set :user, "bitnami"
+set :user, "ubuntu"
 ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "id_rsa")]
 
-set :applicationdir, "/home/bitnami/public_html/#{application}"
-set :deploy_to, "/home/bitnami/public_html/#{application}"
+set :applicationdir, "/home/ubuntu/public_html/#{application}"
+set :deploy_to, "/home/ubuntu/public_html/#{application}"
 
 set :repository,  "git@github.com:jalvarezsamayoa/EForoGt.git"
 
