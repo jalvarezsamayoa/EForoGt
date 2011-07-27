@@ -55,6 +55,7 @@ GEM
     mime-types (1.16)
     mongo (1.3.1)
       bson (>= 1.3.1)
+    mongo_ext (0.19.3)
     mongo_mapper (0.9.1)
       activemodel (~> 3.0)
       activesupport (~> 3.0)
@@ -110,6 +111,8 @@ DEPENDENCIES
   formtastic
   haml
   jquery-rails (~> 1.0.11)
+  mongo
+  mongo_ext
   mongo_mapper
   rails (= 3.0.9)
   ruby_parser

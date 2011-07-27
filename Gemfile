@@ -1,9 +1,11 @@
 source 'http://rubygems.org'
 
 require 'rubygems'
-require 'mongo'
+#require 'mongo'
 
 gem 'rails', '3.0.9'
+gem 'mongo'
+gem 'mongo_ext'
 gem 'mongo_mapper'
 gem 'haml'
 gem 'sass'
