@@ -13,8 +13,8 @@
 
 # :timeout: 3
 
-# :log_path: /var/log/socky.log
-# :pid_path: /var/run/socky.pid
+:log_path: /home/ubuntu/public_html/eforogt/current/log/socky.log
+:pid_path: /home/ubuntu/public_html/eforogt/current/tmp/socky.pid
 
 # :tls_options:
 #   :private_key_file: /private/key
