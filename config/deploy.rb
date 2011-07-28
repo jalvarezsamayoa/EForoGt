@@ -39,3 +39,21 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 end
+
+after "deploy:update_code", "cache:clear"
+after "cache:clear", "socky:restart"
+
+  
+namespace :cache, :role => :app do
+  desc "Flush memcached"
+  task :clear do
+    run "cd #{deploy_to}/current && /usr/bin/env rake cache:clear RAILS_ENV=#{rails_env}"
+  end
+end
+
+namespace :socky, :role => :app do
+  restart "Socky server"
+  task :restart do
+    run "cd #{deploy_to}/current && socky -c #{deploy_to}/current/config/socky.yml -d "
+  end
+end
