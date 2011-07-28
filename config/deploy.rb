@@ -52,7 +52,7 @@ namespace :cache do
 end
 
 namespace :socky do
-  restart "Socky server"
+  desc "Restart Socky server"
   task :restart, :role => :app do
     run "cd #{deploy_to}/current && socky -c #{deploy_to}/current/config/socky.yml -d"
   end
