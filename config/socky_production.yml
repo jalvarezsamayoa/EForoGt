@@ -1,0 +1,17 @@
+:port: 8080
+:debug: false
+
+:subscribe_url: http://ec2-184-72-81-42.compute-1.amazonaws.com/socky/subscribe
+:unsubscribe_url: http://ec2-184-72-81-42.compute-1.amazonaws.com/socky/unsubscribe
+
+:secret: FCo7t7397E5k46s
+:secure: false
+
+:timeout: 3
+
+:log_path: /home/ubuntu/public_html/eforogt/current/log/socky.log
+:pid_path: /home/ubuntu/public_html/eforogt/current/tmp/socky.pid
+
+# :tls_options:
+#   :private_key_file: /private/key
+#   :cert_chain_file: /ssl/certificate
