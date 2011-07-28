@@ -1,4 +1,4 @@
-:port: 8080
+:port: 80
 :debug: false
 
 :subscribe_url: http://ec2-184-72-81-42.compute-1.amazonaws.com/socky/subscribe
