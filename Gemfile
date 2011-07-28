@@ -18,8 +18,7 @@ gem 'jquery-rails', "~> 1.0.11"
 gem 'flutie', "~> 1.1"
 gem 'ruby_parser'
 gem 'admin_data'
-
-gem 'socky-client-rails'
+gem 'daemons'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

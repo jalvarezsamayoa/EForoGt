@@ -113,6 +113,9 @@ div.container {
     display: none;
 }
 
+#candidato-actual div#gracias {
+    display: none;
+}
 /*--------------------------------------------*/
 /* estadistica */
 /*--------------------------------------------*/

@@ -21,13 +21,16 @@
                 %td= link_to candidato.url
     #candidato-califica.span-14.prepend-1.last
       %div.span-7
-        ¿Como respondio?
-        = form_for(@voto, :url => '/home/votar', :id => 'calificar_candidato', :remote => true) do |f|
-          = f.hidden_field('candidato')
-          = f.hidden_field('pregunta')
-          = f.select('puntaje', options_for_select([["4. Excelente", 4], ["3. Buena", 3], ["2. Regular", 2], ["1. Mala", 1]]), {:prompt => 'Califícala..'})
-          %br
-          = submit_tag 'Enviar Calificación', :id => "submit_vote"
+        #voto
+          ¿Como respondio?
+          = form_for(@voto, :url => '/home/votar.json', :remote => true) do |f|
+            = f.hidden_field('candidato')
+            = f.hidden_field('pregunta')
+            = f.select('puntaje', options_for_select([["4. Excelente", 4], ["3. Buena", 3], ["2. Regular", 2], ["1. Mala", 1]]), {:prompt => 'Califícala..'})
+            %br
+            = submit_tag 'Enviar Calificación', :id => "submit_vote"
+        #gracias.success
+          Gracias por tu voto. Por favor espera la siguiente pregunta.
       #estadistica.span-6.last
         %h2 Punteo
         #estadistica-grafica

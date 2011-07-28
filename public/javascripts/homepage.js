@@ -41,6 +41,8 @@ function update_question(pregunta){
     $("#pregunta_actual").val(pregunta);
 
     reset_puntaje();
+
+    update_voto('show');
   }
 };
 
@@ -53,13 +55,14 @@ function update_candidato(candidato) {
     $(".candidato").hide();
     $("#"+candidato).fadeIn('slow');
     $("#candidato").show();
+
+    $("#candidato_actual").val(candidato);
+    $("#voto_candidato").val(candidato);
+
+    reset_puntaje();
+
+    update_voto('show');
   }
-
-  $("#candidato_actual").val(candidato);
-  $("#voto_candidato").val(candidato);
-
-  reset_puntaje();
-
 };
 
 function update_promedio(promedio) {
@@ -79,6 +82,16 @@ function reset_puntaje(){
   $("#candidato_puntaje").effect("highlight", {}, 3000);
 };
 
+function update_voto(action){
+  if (action == 'show') {
+    $("#voto").show();
+    $("#gracias").hide();
+  } else {
+    $("#voto").hide();
+    $("#gracias").show();
+  }
+};
+
 function set_estado_evento(data){
 
 
@@ -86,22 +99,30 @@ function set_estado_evento(data){
     $("#usuario_actual").val(data.usuario);
   }
 
-  if ( $("#pregunta_actual").val() != data.pregunta ) {
-    update_question(data.pregunta);
-  }
+  if (data.estado == 0 || data.estado == 2) {
 
-  if ( $("#candidato_actual").val() != data.candidato ) {
-    update_candidato(data.candidato);
-  }
-
-  if ( $("#promedio_actual").val() != data.promedio ) {  
-    update_promedio(data.promedio);
-  }
-
-  if ($("#estado_evento").val() != data.estado) {
     $("#estado_evento").val(data.estado);
     update_event(data.estado);
+
+  } else {
+    if ( $("#estado_evento").val() == '0' ){
+      $("#estado_evento").val(data.estado);
+      update_event(data.estado);
+    }
+
+    if ( $("#pregunta_actual").val() != data.pregunta ||  $("#pregunta_actual").val() == '') {
+      update_question(data.pregunta);
+    }
+
+    if ( $("#candidato_actual").val() != data.candidato || $("#candidato_actual").val() == '') {
+      update_candidato(data.candidato);
+    }
+
+    if ( $("#promedio_actual").val() != data.promedio ) {
+      update_promedio(data.promedio);
+    }
   }
+    
 
 };
 
@@ -116,8 +137,22 @@ function get_estado_evento(){
          });
 };
 
+function setup(){
+
+  $("form#new_voto").live("ajax:beforeSend", function(evt, xhr, settings){
+    update_voto('hide');
+  })
+    .live("ajax:success", function(evt, data, status, xhr){
+      var response = $.parseJSON(xhr.responseText);
+      update_promedio(response.promedio);
+      $("#voto_puntaje").val("");
+    });
+
+};
+
 
 $(document).ready(function(){
+  setup();
   get_estado_evento();
   setInterval( "get_estado_evento()", 5000 );
 });

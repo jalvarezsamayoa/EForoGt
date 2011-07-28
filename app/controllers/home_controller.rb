@@ -18,8 +18,12 @@ class HomeController < ApplicationController
     
     @promedio = Promedio.last
     @promedio.votar(@voto.puntaje)
+
+    json_response = {:promedio => @promedio.valor}
     
-    render :nothing => true
+    respond_to do |wants|
+      wants.json { render :json => json_response.to_json }
+    end
   end
 
   def estado
@@ -31,6 +35,8 @@ class HomeController < ApplicationController
       :candidato => evento.candidato,
       :promedio => promedio.valor,
       :usuario => Time.now.to_i}
+
+    logger.debug { "Estado #{json_response}" }
 
     respond_to do |wants|
       wants.json {  render :json => json_response.to_json }
