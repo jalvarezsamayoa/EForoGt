@@ -5,7 +5,7 @@ class Admin::CandidatosController < ApplicationController
   before_filter :authenticate_htaccess
   
   def index
-    @candidatos = Candidato.all
+    @candidatos = Candidato.all(:order => "codigo")
     
     respond_to do |format|
       format.html # index.html.erb

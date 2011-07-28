@@ -67,6 +67,8 @@ class Admin::EventosController < ApplicationController
       else        
         params[:evento][:candidato] = Candidato.first(:order => "codigo").id.to_s if params[:evento][:pregunta]
       end
+
+      PromedioCandidato.guardar_estado_actual
       
       if @evento.update_attributes(params[:evento])
 
@@ -96,17 +98,10 @@ class Admin::EventosController < ApplicationController
 
 
   def reset
+    PromedioCandidato.reset
     Promedio.reset
     flash[:notice] = "Votos reiniciados con exito."
     redirect_to admin_dashboard_url
   end
-
-
-
-  private
-
-  def send_to_clients(data)
-    Socky.send(data.collect{|d| CGI.escapeHTML(d)}.to_json)
-  end
-  
+ 
 end

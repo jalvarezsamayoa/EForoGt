@@ -13,6 +13,6 @@
       - for pregunta in @preguntas
         %tr
           %td= pregunta.orden
-          %td= link_to pregunta.nombre, admin_pregunta_path(pregunta)
+          %td= link_to pregunta.texto, admin_pregunta_path(pregunta)
   = will_paginate @preguntas
   

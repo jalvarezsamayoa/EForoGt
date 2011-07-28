@@ -23,6 +23,8 @@ class Evento
   end
 
   def self.siguiente_pregunta
+    PromedioCandidato.guardar_estado_actual
+    
     e =  Evento.last
 
     n =  Pregunta.count
@@ -44,6 +46,8 @@ class Evento
   end
 
   def self.siguiente_candidato
+    PromedioCandidato.guardar_estado_actual
+    
     e =  Evento.last
     n = Candidato.count
     candidato_actual = Candidato.find(e.candidato)

@@ -7,10 +7,12 @@
   %table.minimalist-b
     %thead
       %tr
+        %th= 'Orden'
         %th= Candidato.human_attribute_name(:nombre)
     %tbody
       - for candidato in @candidatos
         %tr
+          %td= candidato.codigo
           %td= link_to candidato.nombre, admin_candidato_path(candidato)
   =# will_paginate @candidatos
   

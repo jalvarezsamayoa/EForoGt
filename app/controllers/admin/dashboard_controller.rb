@@ -19,12 +19,5 @@ class Admin::DashboardController < ApplicationController
     end
     redirect_to(admin_dashboard_path)
   end
-
-  
-  private
-
-  def send_to_clients(data)
-    Socky.send(data.collect{|d| CGI.escapeHTML(d)}.to_json)
-  end
   
 end
