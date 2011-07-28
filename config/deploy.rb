@@ -47,7 +47,7 @@ after "deploy:update_code", "socky:restart"
 namespace :cache do
   desc "Flush memcached"
   task :clear, :role => :app do
-    run "cd #{deploy_to}/current && rake cache:clear RAILS_ENV=#{rails_env}"
+    run "cd #{deploy_to}/current && bundle exec rake cache:clear RAILS_ENV=#{rails_env}"
   end
 end
 
