@@ -56,6 +56,6 @@ namespace :socky do
   task :restart, :role => :app do
     run "ln -nfs #{shared_path}/config/socky_production.yml #{release_path}/config/socky.yml"
     run "ln -nfs #{shared_path}/config/socky_hosts_production.yml #{release_path}/config/socky_hosts.yml"
-  run "cd #{deploy_to}/current && socky -c #{deploy_to}/current/config/socky.yml -d"
+  run "cd #{release_path} && socky -c #{deploy_to}/current/config/socky.yml -d"
   end
 end
