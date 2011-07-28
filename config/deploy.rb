@@ -55,7 +55,7 @@ namespace :socky do
   desc "Restart Socky server"
   task :restart, :role => :app do
 
-    run "cd #{deploy_to}/current/config && rm -f socky.yml && rm -f socky_hosts.yml && ln -s socky_production.yml socky.yml && ln -s socky_hosts_production.yml socky_hosts.yml"
+    run "cd #{deploy_to}/current/config && rm socky.yml && rm socky_hosts.yml && ln -s socky_production.yml socky.yml && ln -s socky_hosts_production.yml socky_hosts.yml"
     
     run "cd #{deploy_to}/current && socky -c #{deploy_to}/current/config/socky.yml -d"
   end
