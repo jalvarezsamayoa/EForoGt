@@ -12,7 +12,12 @@ Eforo::Application.routes.draw do
       end
     end
     resources :preguntas
-    resource :dashboard
+    resource :dashboard do
+      collection do
+        get 'siguiente_pregunta'
+        get 'siguiente_candidato'
+      end
+    end
   end
 
   match 'dashboard' => "admin/dashboard#show", :as => :dashboard

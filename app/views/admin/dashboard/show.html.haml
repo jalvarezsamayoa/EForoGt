@@ -2,6 +2,8 @@
 
 
 = link_to 'Reiniciar votos evento.', reset_admin_evento_path(@evento), :confirm => "Esta seguro?", :class => 'button negative'
+= link_to 'Siguiente Pregunta >>.', siguiente_pregunta_admin_dashboard_path, :class => 'button positive'
+= link_to 'Siguiente Candidato >>', siguiente_candidato_admin_dashboard_path,:class => 'button positive'
 %hr
 
 %h2 Cambiar estado de Evento

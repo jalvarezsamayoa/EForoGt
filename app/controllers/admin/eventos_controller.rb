@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class Admin::EventosController < ApplicationController
   layout 'admin'
+  before_filter :authenticate_htaccess
   
   # access_control do
   #   allow :administrador

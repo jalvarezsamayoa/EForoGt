@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class Admin::PreguntasController < ApplicationController
-
+ before_filter :authenticate_htaccess
   layout 'admin'
   
   # access_control do

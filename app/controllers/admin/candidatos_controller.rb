@@ -2,6 +2,8 @@
 class Admin::CandidatosController < ApplicationController
   layout 'admin'
   
+  before_filter :authenticate_htaccess
+  
   def index
     @candidatos = Candidato.all
     
