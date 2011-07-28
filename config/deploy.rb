@@ -44,16 +44,16 @@ after "deploy:update_code", "cache:clear"
 after "cache:clear", "socky:restart"
 
   
-namespace :cache, :role => :app do
+namespace :cache do
   desc "Flush memcached"
-  task :clear do
+  task :clear, :role => :app do
     run "cd #{deploy_to}/current && /usr/bin/env rake cache:clear RAILS_ENV=#{rails_env}"
   end
 end
 
-namespace :socky, :role => :app do
+namespace :socky do
   restart "Socky server"
-  task :restart do
+  task :restart, :role => :app do
     run "cd #{deploy_to}/current && socky -c #{deploy_to}/current/config/socky.yml -d "
   end
 end
