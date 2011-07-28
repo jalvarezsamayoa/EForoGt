@@ -62,13 +62,15 @@ class Admin::EventosController < ApplicationController
     respond_to do |format|
 
       if params[:evento][:estado]
+
         params[:evento][:pregunta] = Pregunta.first(:order => "orden").id.to_s
         params[:evento][:candidato] = Candidato.first(:order => "codigo").id.to_s
+
       else        
         params[:evento][:candidato] = Candidato.first(:order => "codigo").id.to_s if params[:evento][:pregunta]
-      end
 
-      PromedioCandidato.guardar_estado_actual
+         PromedioCandidato.guardar_estado_actual
+      end
       
       if @evento.update_attributes(params[:evento])
 

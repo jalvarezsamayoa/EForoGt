@@ -17,8 +17,8 @@
         %tbody
           - for promedio in @promedios do
             %tr
-              %td= promedio.pregunta
-              %td= promedio.candidato.nombre unless promedio.candidato.nil?
+              %td= promedio.pregunta.orden
+              %td= promedio.candidato.nombre
               %td= promedio.n
               %td= promedio.votos[3]
               %td= promedio.votos[2]

@@ -1,8 +1,8 @@
 class PromedioCandidato
   include MongoMapper::Document
 
-  key :candidato, String
-  key :pregunta, String
+#  key :candidato, String
+#  key :pregunta, String
   key :votos, Array
   key :n, Integer
   key :valor, Float
@@ -15,8 +15,8 @@ class PromedioCandidato
     e = Evento.last
     p = Promedio.last
 
-    PromedioCandidato.create(:candidato => e.candidato,
-                             :pregunta => e.pregunta,
+    PromedioCandidato.create(:candidato => Candidato.find(e.candidato),
+                             :pregunta => Pregunta.find(e.pregunta),
                              :votos => p.votos,
                              :n => p.n,
                              :valor => p.valor )

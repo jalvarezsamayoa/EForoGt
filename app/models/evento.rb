@@ -22,8 +22,8 @@ class Evento
     e.save
   end
 
-  def self.siguiente_pregunta
-    PromedioCandidato.guardar_estado_actual
+  def self.siguiente_pregunta(guardar_estado = true)
+    PromedioCandidato.guardar_estado_actual if guardar_estado
     
     e =  Evento.last
 

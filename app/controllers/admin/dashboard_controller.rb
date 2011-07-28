@@ -15,7 +15,7 @@ class Admin::DashboardController < ApplicationController
 
   def siguiente_candidato
     unless Evento.siguiente_candidato
-      Evento.siguiente_pregunta
+      Evento.siguiente_pregunta(false)
     end
     redirect_to(admin_dashboard_path)
   end
