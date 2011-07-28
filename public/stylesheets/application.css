@@ -71,7 +71,7 @@ div.container {
     text-align: center;
     font-size: 2em;
     padding-top: 5px;
-
+    display: none;
 }
 
 #pregunta-actual li.pregunta {
@@ -83,6 +83,7 @@ div.container {
 /*--------------------------------------------*/
 #candidato-actual {
     background-color: #F0F0F0;
+    display: none;
 }
 
 #candidato-actual .title {
@@ -134,14 +135,20 @@ div.container {
 /*--------------------------------------------*/
 
 #evento-no-iniciado,
-#evento-finalizado {
+#evento-finalizado,
+#evento-cargando {
     font-size: 3em;
     text-align: center;
     background-color: #F0F0F0 ;
 }
 #evento-no-iniciado h2,
-#evento-finalizado h2 {
+#evento-finalizado h2,
+#evento-cargando h2 {
     color: #71B6F7; 
+}
+#evento-no-iniciado,
+#evento-finalizado {
+    display: none;
 }
 
 /*--------------------------------------------*/

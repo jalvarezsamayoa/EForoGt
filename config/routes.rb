@@ -2,6 +2,7 @@ Eforo::Application.routes.draw do
 
   get "home/index"
   post "home/votar"
+  get "home/estado"
 
   namespace :admin do
     resources :candidatos
@@ -16,14 +17,7 @@ Eforo::Application.routes.draw do
 
   match 'dashboard' => "admin/dashboard#show", :as => :dashboard
 
- resource :socky do
-    member do
-      post :subscribe
-      post :unsubscribe
-      post :message
-    end
-  end
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

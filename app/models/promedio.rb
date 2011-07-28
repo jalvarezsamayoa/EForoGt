@@ -18,9 +18,9 @@ class Promedio
     self.save
   end
   
-  def self.reset
+  def self.reset(delete_votos = true)
     Promedio.delete_all
-    Voto.delete_all
+    Voto.delete_all if delete_votos
     Promedio.create({:n => 0, :valor => 0.0, :votos => [0, 0, 0, 0]})
   end
   

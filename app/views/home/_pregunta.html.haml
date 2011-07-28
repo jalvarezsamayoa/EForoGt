@@ -1,0 +1,7 @@
+#pregunta-actual.span-15.last.shadow.rounded
+  %ol#preguntas
+    - @preguntas.each do |pregunta|
+      %li{:id => pregunta.id.to_s, :class => "pregunta" }
+        = pregunta.to_label
+  %span#no-hay-pregunta
+    No se ha realizado una pregunta...

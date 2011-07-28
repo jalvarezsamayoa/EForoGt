@@ -1,12 +1,9 @@
-- content_for :header do
-  = socky :client_id => @login
-
 #header.span-24.last
   #logo.span-9.prepend-1
     %h1
-      \#EForoGt
+      \#EForo
       %span 2011
-    %p.slogan Tu opinión cuenta HOY.
+    %p.slogan Foro Virtual 2011.Tu opinión cuenta HOY.
   #navigation.span-14.last
     = link_to 'Inicio', '#'
     = link_to 'Estadisticas', '#'
@@ -15,69 +12,18 @@
 %hr.space
 #main.span-22.prepend-1.append-1.last
   #content.span-15
-    #pregunta-actual.span-15.last.shadow.rounded     
-      %ol#preguntas
-        - @preguntas.each do |pregunta| 
-          %li{:id => pregunta.id.to_s, :class => "pregunta" }
-            = pregunta.to_label
-      %span#no-hay-pregunta
-        No se ha realizado una pregunta...
+    = render 'pregunta'
     %hr.space
-    #candidato-actual.span-15.last.shadow
-      .title.span-15.last
-        %h3  Candidato en uso de la palabra
-      %hr.space
-      #candidato
-        #candidato-bio.span-14.prepend-1.last
-          - @candidatos.each do |candidato|
-            %div{:id => candidato.id, :class => 'candidato'}        
-              %div.span-7
-                = image_tag(candidato.imagen, :title => candidato.partido + ' - ' + candidato.nombre, :size => "260x260")
-              %div.span-7.last              
-                %table
-                  %tr
-                    %th Nombre:
-                    %td= candidato.nombre
-                  %tr
-                    %th Partido:
-                    %td= candidato.partido
-                  %tr
-                    %th Web:
-                    %td= link_to candidato.url            
-        #candidato-califica.span-14.prepend-1.last
-          %div.span-7
-            ¿Como respondio?
-            = form_for(@voto, :url => '/home/votar', :id => 'calificar_candidato', :remote => true) do |f|
-              = f.hidden_field('candidato')
-              = f.hidden_field('pregunta')
-              = f.select('puntaje', options_for_select([["4. Excelente", 4], ["3. Buena", 3], ["2. Regular", 2], ["1. Mala", 1]]), {:prompt => 'Califícala..'})
-              %br
-              = submit_tag 'Enviar Calificación', :id => "submit_vote"
-          #estadistica.span-6.last
-            %h2 Punteo
-            #estadistica-grafica
-              %h3#promedio 0.00
-        %hr.space
-      #no-hay-candidato
-        No hay candidato en uso de la palabra
+    = render 'candidato'    
     %hr.space
-    #evento-no-iniciado.span-15.last.rounded.shadow
-      %h2 Foro Virtual 2011
-      %h3 Evento por iniciar
-      %p Gracias por participar en el Foro Virtual 2011.
-      %p Espera unos momentos mientras inicia el evento.
-    #evento-finalizado.span-15.last.rounded.shadow
-      %h2 Foro Virtual 2011
-      %h3 Evento ha Concluido
-      %p Gracias por haber participado.
-      %p Visita la pagina de Estadisticas para ver los resultados    
+    = render 'estados'
   #sidebar.span-7.last
-    #feeds.span-11.last
-      = render 'twitter_button'
-      = render 'twitter_feed'
-
+    #feeds.span-7.last
+    = render 'twitter_button'
+    = render 'twitter_feed'
 %hr.space
-= hidden_field_tag 'estado_evento', @evento.estado
-= hidden_field_tag 'pregunta_actual', @evento.pregunta
-= hidden_field_tag 'candidato_actual', @evento.candidato
-= hidden_field_tag 'promedio_actual', @promedio.valor
+= hidden_field_tag 'estado_evento', ''
+= hidden_field_tag 'pregunta_actual', ''
+= hidden_field_tag 'candidato_actual', ''
+= hidden_field_tag 'promedio_actual', ''
+= hidden_field_tag 'usuario_actual', ''

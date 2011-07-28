@@ -60,23 +60,21 @@ class Admin::EventosController < ApplicationController
     
     respond_to do |format|
 
-      params[:evento][:candidato] = Candidato.first(:order => "codigo").id.to_s if params[:evento][:pregunta]
+      if params[:evento][:estado]
+        params[:evento][:pregunta] = Pregunta.first(:order => "orden").id.to_s
+        params[:evento][:candidato] = Candidato.first(:order => "codigo").id.to_s
+      else        
+        params[:evento][:candidato] = Candidato.first(:order => "codigo").id.to_s if params[:evento][:pregunta]
+      end
       
       if @evento.update_attributes(params[:evento])
-        flash[:notice] = 'Registro actualizado con éxito.'
 
-       
-        send_to_clients ["evento", params[:evento][:estado] ] if  params[:evento][:estado]
-        send_to_clients ["pregunta", params[:evento][:pregunta] ] if  params[:evento][:pregunta]
-        send_to_clients ["candidato", params[:evento][:candidato] ] if  params[:evento][:candidato]
-        
+        Promedio.reset(false)
+ 
         format.html { redirect_to(admin_dashboard_path) }
-
-        
-        format.xml  { head :ok }
+      
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @evento.errors, :status => :unprocessable_entity }
+        format.html { render :action => "edit" }      
       end
     end
   end

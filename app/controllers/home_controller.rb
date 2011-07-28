@@ -1,15 +1,13 @@
 class HomeController < ApplicationController
   def index
     @login = Time.now.to_i
+    
     @preguntas = Pregunta.all
-    @evento = Evento.last
     @candidatos = Candidato.all(:order => "codigo")
-    @promedio = Promedio.last
-
+  
     @voto = Voto.new(:candidato => 0,
                      :pregunta => 0,
-                     :puntaje => nil)
-    
+                     :puntaje => nil)   
   end
 
   def votar
@@ -20,16 +18,24 @@ class HomeController < ApplicationController
     
     @promedio = Promedio.last
     @promedio.votar(@voto.puntaje)
-
-    send_to_clients ["promedio", @promedio.valor.to_s ]
     
     render :nothing => true
   end
 
-  private
+  def estado
+    evento = Evento.last
+    promedio = Promedio.last
 
-  def send_to_clients(data)
-    Socky.send(data.collect{|d| CGI.escapeHTML(d)}.to_json)
+    json_response = {:estado => evento.estado,
+      :pregunta => evento.pregunta,
+      :candidato => evento.candidato,
+      :promedio => promedio.valor,
+      :usuario => Time.now.to_i}
+
+    respond_to do |wants|
+      wants.json {  render :json => json_response.to_json }
+    end
   end
+  
 
 end

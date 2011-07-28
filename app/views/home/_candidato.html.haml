@@ -1,0 +1,37 @@
+#candidato-actual.span-15.last.shadow
+  .title.span-15.last
+    %h3  Candidato en uso de la palabra
+  %hr.space
+  #candidato
+    #candidato-bio.span-14.prepend-1.last
+      - @candidatos.each do |candidato|
+        %div{:id => candidato.id, :class => 'candidato'}
+          %div.span-7
+            = image_tag(candidato.imagen, :title => candidato.partido + ' - ' + candidato.nombre, :size => "260x260")
+          %div.span-7.last
+            %table
+              %tr
+                %th Nombre:
+                %td= candidato.nombre
+              %tr
+                %th Partido:
+                %td= candidato.partido
+              %tr
+                %th Web:
+                %td= link_to candidato.url
+    #candidato-califica.span-14.prepend-1.last
+      %div.span-7
+        ¿Como respondio?
+        = form_for(@voto, :url => '/home/votar', :id => 'calificar_candidato', :remote => true) do |f|
+          = f.hidden_field('candidato')
+          = f.hidden_field('pregunta')
+          = f.select('puntaje', options_for_select([["4. Excelente", 4], ["3. Buena", 3], ["2. Regular", 2], ["1. Mala", 1]]), {:prompt => 'Califícala..'})
+          %br
+          = submit_tag 'Enviar Calificación', :id => "submit_vote"
+      #estadistica.span-6.last
+        %h2 Punteo
+        #estadistica-grafica
+          %h3#promedio 0.00
+    %hr.space
+  #no-hay-candidato
+    No hay candidato en uso de la palabra
