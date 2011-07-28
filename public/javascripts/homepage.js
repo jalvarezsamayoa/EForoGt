@@ -105,10 +105,18 @@ function set_estado_evento(data){
     update_event(data.estado);
 
   } else {
-    if ( $("#estado_evento").val() == '0' ){
+
+    if ( $("#estado_evento").val() == '' ){
       $("#estado_evento").val(data.estado);
       update_event(data.estado);
+    } else {
+      if (parseInt($("#estado_evento").val()) != data.estado ) {
+        $("#estado_evento").val(data.estado);
+        update_event(data.estado);
+      }
     }
+
+    
 
     if ( $("#pregunta_actual").val() != data.pregunta ||  $("#pregunta_actual").val() == '') {
       update_question(data.pregunta);

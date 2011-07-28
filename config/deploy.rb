@@ -41,7 +41,7 @@ namespace :deploy do
 end
 
 #after "deploy:update_code", "cache:clear"
-after "deploy:finalize_update", "socky:restart"
+#after "deploy:finalize_update", "socky:restart"
 
   
 namespace :cache do
