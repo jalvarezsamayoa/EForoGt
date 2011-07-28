@@ -1,15 +1,4 @@
-#header.span-24.last
-  #logo.span-9.prepend-1
-    %h1
-      \#EForo
-      %span 2011
-    %p.slogan Foro Virtual 2011.Tu opinión cuenta HOY.
-  #navigation.span-14.last
-    = link_to 'Inicio', '#'
-    = link_to 'Estadisticas', '#'
-    = link_to 'Acerca de', '#'
-    = link_to 'Licenciamiento', '#'
-%hr.space
+= render 'header'
 #main.span-22.prepend-1.append-1.last
   #content.span-15
     = render 'pregunta'

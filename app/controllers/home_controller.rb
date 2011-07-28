@@ -42,5 +42,9 @@ class HomeController < ApplicationController
       wants.json {  render :json => json_response.to_json }
     end
   end
+
+  def estadisticas
+    @promedios = PromedioCandidato.all(:order => "pregunta, candidato")
+  end
   
 end

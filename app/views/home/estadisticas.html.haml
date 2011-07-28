@@ -1,0 +1,28 @@
+= render 'header'
+#main.span-22.prepend-1.append-1.last
+  %h1 Estadisticas
+
+  %table
+    %thead
+      %tr
+        %th Pregunta
+        %th Candidato
+        %th Votos Recibidos
+        %th Excelente
+        %th Buena
+        %th Regular
+        %th Mala
+        %th Promedio
+        %th Punteo
+        %tbody
+          - for promedio in @promedios do
+            %tr
+              %td= promedio.pregunta
+              %td= promedio.candidato.nombre unless promedio.candidato.nil?
+              %td= promedio.n
+              %td= promedio.votos[3]
+              %td= promedio.votos[2]
+              %td= promedio.votos[1]
+              %td= promedio.votos[0]
+              %td= promedio.valor.round(3)
+              %td= ((promedio.valor * 100)/4).round(3)

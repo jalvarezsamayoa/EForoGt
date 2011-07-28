@@ -7,6 +7,10 @@ class PromedioCandidato
   key :n, Integer
   key :valor, Float
 
+  belongs_to :candidato
+  belongs_to :pregunta
+
+
   def self.guardar_estado_actual
     e = Evento.last
     p = Promedio.last

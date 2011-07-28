@@ -3,6 +3,7 @@ Eforo::Application.routes.draw do
   get "home/index"
   post "home/votar"
   get "home/estado"
+  get "home/estadisticas"
 
   namespace :admin do
     resources :candidatos
@@ -21,6 +22,7 @@ Eforo::Application.routes.draw do
   end
 
   match 'dashboard' => "admin/dashboard#show", :as => :dashboard
+  match 'estadisticas' => "home#estadisticas", :as => :estadisticas
 
 
   # The priority is based upon order of creation:
