@@ -9,7 +9,7 @@
  */
 
 // Asset location for Socky(flash fallback and JSON files)
-window.SOCKY_ASSET_LOCATION = 'assets';
+window.SOCKY_ASSET_LOCATION = window.location.hostname + '/javascripts/socky/assets';
 
 Socky = function(host, port, params) {
   this.host = host;
