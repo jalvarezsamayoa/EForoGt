@@ -48,7 +48,7 @@ Candidato.create(:codigo => 4,
                  :imagen => 'http://agn.gob.gt/agn/images/fotos/2011/julio/0707-11/harold-caballeros-candidato-presidencia.jpg')
 
 
-PromedioCandidato.create({:candidato => '', :pregunta => '', :n => 0, :valor => 0.00, :votos => [0,0,0,0] })
+PromedioCandidato.create({:candidato => Candidato.first.id, :pregunta => Pregunta.first.id, :n => 0, :valor => 0.00, :votos => [0,0,0,0] })
 
 Promedio.reset
 PromedioCandidato.reset

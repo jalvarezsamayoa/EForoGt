@@ -59,3 +59,11 @@ namespace :socky do
   run "cd #{release_path} && socky -c #{deploy_to}/current/config/socky.yml -d"
   end
 end
+
+
+namespace :db do
+  desc "Carga inicial de datos"
+  task :seed, :role => :db do
+    run "cd #{deploy_to}/current && bundle exec rake db:seed RAILS_ENV=#{rails_env}"
+  end
+end
