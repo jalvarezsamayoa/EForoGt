@@ -69,7 +69,7 @@ function update_promedio(promedio) {
   var puntos;
 
   puntos = parseFloat(promedio);
-  puntos = (puntos * 100.00)/4.00;
+  puntos = (puntos * 100.00)/5.00;
 
   $("h3#promedio").text(puntos.toFixed(3).toString());
 

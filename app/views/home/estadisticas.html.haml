@@ -11,7 +11,8 @@
         %th Excelente
         %th Buena
         %th Regular
-        %th Mala
+        %th Mala      
+        %th Pésima
         %th Promedio
         %th Punteo
         %tbody
@@ -20,9 +21,10 @@
               %td= promedio.pregunta.orden
               %td= promedio.candidato.nombre
               %td= promedio.n
+              %td= promedio.votos[4]
               %td= promedio.votos[3]
               %td= promedio.votos[2]
               %td= promedio.votos[1]
               %td= promedio.votos[0]
               %td= promedio.valor.round(3)
-              %td= ((promedio.valor * 100)/4).round(3)
+              %td= ((promedio.valor * 100)/5).round(3)

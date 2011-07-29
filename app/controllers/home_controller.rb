@@ -46,5 +46,11 @@ class HomeController < ApplicationController
   def estadisticas
     @promedios = PromedioCandidato.all(:order => "pregunta, candidato")
   end
+
+  def acercade
+  end
+
+  def licencimiento
+  end
   
 end
