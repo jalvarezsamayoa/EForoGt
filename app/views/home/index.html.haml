@@ -12,6 +12,15 @@
     #feeds.span-7.last
     = render 'twitter_button'
     = render 'twitter_feed'
+#video.span-22.prepend-1.append-1.last{"text-align" => :center}
+  :plain
+    <object width="480" height="296" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000">
+    <param name="flashvars" value="cid=8662636&amp;autoplay=false"/>
+    <param name="allowfullscreen" value="true"/>
+    <param name="allowscriptaccess" value="always"/>
+    <param name="src" value="http://www.ustream.tv/flash/viewer.swf"/>
+    <embed flashvars="cid=8662636&amp;autoplay=false" width="480" height="296" allowfullscreen="true" allowscriptaccess="always" src="http://www.ustream.tv/flash/viewer.swf" type="application/x-shockwave-flash"></embed>
+    </object><br /><a href="http://www.ustream.tv/facebook" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Live Video app for Facebook by Ustream</a>
 %hr.space
 = hidden_field_tag 'estado_evento', ''
 = hidden_field_tag 'pregunta_actual', ''
