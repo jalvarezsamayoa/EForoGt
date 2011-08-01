@@ -116,7 +116,7 @@ function set_estado_evento(data){
       }
     }
 
-    
+
 
     if ( $("#pregunta_actual").val() != data.pregunta ||  $("#pregunta_actual").val() == '') {
       update_question(data.pregunta);
@@ -130,7 +130,7 @@ function set_estado_evento(data){
       update_promedio(data.promedio);
     }
   }
-    
+
 
 };
 
@@ -147,9 +147,17 @@ function get_estado_evento(){
 
 function setup(){
 
-  $("form#new_voto").live("ajax:beforeSend", function(evt, xhr, settings){
-    update_voto('hide');
+  $("form#new_voto").submit(function(){
+    if ($("#voto_puntaje").val() == "") {
+            alert('Debe seleccion una calificación para continuar.');
+    return false;
+    } else {
+      return true;
+    }
   })
+    .live("ajax:beforeSend", function(evt, xhr, settings){
+      update_voto('hide');
+    })
     .live("ajax:success", function(evt, data, status, xhr){
       var response = $.parseJSON(xhr.responseText);
       update_promedio(response.promedio);

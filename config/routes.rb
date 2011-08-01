@@ -8,7 +8,11 @@ Eforo::Application.routes.draw do
   get "home/licenciamiento"
 
   namespace :admin do
-    resources :candidatos
+    resources :candidatos do
+      member do
+        get 'reorder'
+      end
+    end
     resources :eventos do
       member do
         get 'reset'

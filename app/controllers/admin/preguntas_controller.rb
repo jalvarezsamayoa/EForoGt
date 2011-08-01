@@ -8,11 +8,12 @@ class Admin::PreguntasController < ApplicationController
   # end
 
   def index
- 
-    q = params[:search].nil? ? '' : '%'+params[:search][0]+'%'
-    #    @preguntas = Pregunta.where("texto like ?",q).paginate(:page
-    #    => params[:page])    
-    @preguntas = Pregunta.all(:order => "orden").paginate(:page => params[:page])
+
+    
+    q = params[:search].nil? ? '%' : '%'+params[:search][0]+'%'
+    
+    @preguntas = Pregunta.all(:order => "orden").paginate(:page    => params[:page])    
+#    @preguntas = Pregunta.all(:order => "orden").paginate(:page => params[:page])
     
     respond_to do |format|
       format.html # index.html.erb

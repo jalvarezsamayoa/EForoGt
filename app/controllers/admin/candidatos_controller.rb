@@ -86,4 +86,23 @@ class Admin::CandidatosController < ApplicationController
     end
   end
 
+  def reorder
+    @candidato = Candidato.find(params[:id])
+
+    codigo =  params[:codigo].to_i
+
+    if codigo > 0    
+      old_candidato = Candidato.find_by_codigo(codigo)
+      old_candidato.codigo = @candidato.codigo
+      old_candidato.save
+
+      @candidato.codigo = codigo
+      @candidato.save      
+    end
+
+
+    
+    redirect_to admin_candidatos_url
+  end
+
 end

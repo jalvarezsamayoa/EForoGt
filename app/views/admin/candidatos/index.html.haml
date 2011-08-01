@@ -9,10 +9,13 @@
       %tr
         %th= 'Orden'
         %th= Candidato.human_attribute_name(:nombre)
+        %th{:colspan => 2}= "Ordenar"
     %tbody
       - for candidato in @candidatos
         %tr
           %td= candidato.codigo
           %td= link_to candidato.nombre, admin_candidato_path(candidato)
+          %td= link_to(image_tag('blue_up.png'), reorder_admin_candidato_path(candidato, :codigo => (candidato.codigo - 1) ) ) unless (candidato.codigo - 1 ) == 0
+          %td= link_to image_tag('blue_down.png'), reorder_admin_candidato_path(candidato, :codigo => (candidato.codigo + 1) ) 
   =# will_paginate @candidatos
   
