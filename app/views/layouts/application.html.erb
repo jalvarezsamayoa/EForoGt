@@ -13,7 +13,7 @@
       <%= yield %>
     </div>
     <div id="footer">
-      <%= javascript_include_tag :defaults, :cache => true  %>
+      <%= javascript_include_tag 'jquery.min.js', 'jquery-ui.js', 'jquery_ujs.js', :cache => true  %>
       <%= csrf_meta_tag %>
       <%= yield :footer %>
     </div>
