@@ -10,6 +10,9 @@ class Admin::DashboardController < ApplicationController
 
   def siguiente_pregunta
     Evento.siguiente_pregunta
+
+    expire_page :controller => "/home", :action => :estadisticas
+  
     redirect_to(admin_dashboard_path)
   end
 
@@ -17,6 +20,9 @@ class Admin::DashboardController < ApplicationController
     unless Evento.siguiente_candidato
       Evento.siguiente_pregunta(false)
     end
+
+    expire_page :controller => "/home", :action => :estadisticas
+    
     redirect_to(admin_dashboard_path)
   end
   

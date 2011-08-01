@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Eforo</title>
+    <title>#EForo Guatemala 2011</title>
+    <meta charset="utf-8" />
     <%= stylesheet_link_tag 'flutie.css', 'formtastic.css',
-        'blueprint/screen.css', 'tablas.css', 'buttons.css', 'application.css' %>
-    <%= javascript_include_tag :defaults  %>
-    <%= csrf_meta_tag %>
+        'blueprint/screen.css', 'tablas.css', 'buttons.css',
+    'application.css', :cache => true %>
     <%= yield :head %>
   </head>
   <body>
     <div class="container">
       <%= yield %>
     </div>
-    <%= yield :footer %>
+    <div id="footer">
+      <%= javascript_include_tag :defaults, :cache => true  %>
+      <%= csrf_meta_tag %>
+      <%= yield :footer %>
+    </div>
   </body>
 </html>

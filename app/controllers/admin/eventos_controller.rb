@@ -75,7 +75,9 @@ class Admin::EventosController < ApplicationController
       if @evento.update_attributes(params[:evento])
 
         Promedio.reset(false)
- 
+
+        expire_page :controller => "/home", :action => :estadisticas
+        
         format.html { redirect_to(admin_dashboard_path) }
       
       else
@@ -100,9 +102,16 @@ class Admin::EventosController < ApplicationController
 
 
   def reset
+    Evento.delete_all
     PromedioCandidato.reset
     Promedio.reset
+    Evento.create(:estado => 0, :pregunta => Pregunta.first(:order => "codigo").id, :candidato => Candidato.first.id)
+     
+    expire_page :controller => "/home", :action => :index
+    expire_page :controller => "/home", :action => :estadisticas
+    
     flash[:notice] = "Votos reiniciados con exito."
+    
     redirect_to admin_dashboard_url
   end
  

@@ -41,6 +41,10 @@ class Admin::CandidatosController < ApplicationController
     respond_to do |format|
       if @candidato.save
         flash[:notice] = 'Registro creado con éxito.'
+
+        expire_page :controller => :home, :action => :index
+        expire_page :controller => :home, :action => :estadisticas
+        
         format.html { redirect_to(admin_candidato_path(@candidato)) }
         format.xml  { render :xml => @candidato, :status => :created, :location => @candidato }
       else
@@ -56,6 +60,10 @@ class Admin::CandidatosController < ApplicationController
     respond_to do |format|
       if @candidato.update_attributes(params[:candidato])
         flash[:notice] = 'Registro actualizado con éxito.'
+
+        expire_page :controller => :home, :action => :index
+        expire_page :controller => :home, :action => :estadisticas
+        
         format.html { redirect_to(admin_candidato_path(@candidato)) }
         format.xml  { head :ok }
       else
@@ -68,6 +76,9 @@ class Admin::CandidatosController < ApplicationController
   def destroy
     @candidato = Candidato.find(params[:id])
     @candidato.destroy
+
+    expire_page :controller => :home, :action => :index
+    expire_page :controller => :home, :action => :estadisticas
     
     respond_to do |format|
       format.html { redirect_to(admin_candidatos_url) }

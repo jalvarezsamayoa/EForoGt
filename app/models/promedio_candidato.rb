@@ -24,6 +24,7 @@ class PromedioCandidato
 
   def self.reset
     PromedioCandidato.delete_all
+    PromedioCandidato.create({:candidato => Candidato.first, :pregunta => Pregunta.first, :n => 0, :valor => 0.00, :votos => [0,0,0,0,0] })
   end
   
   

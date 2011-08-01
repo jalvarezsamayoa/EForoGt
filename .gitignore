@@ -3,3 +3,7 @@ db/*.sqlite3
 log/*.log
 tmp/
 .rvmrc
+public/javascripts/all.js
+public/stylesheets/all.css
+public/estadisticas.html
+public/index.html

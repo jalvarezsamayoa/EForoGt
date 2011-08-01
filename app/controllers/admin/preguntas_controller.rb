@@ -48,6 +48,10 @@ class Admin::PreguntasController < ApplicationController
     respond_to do |format|
       if @pregunta.save
         flash[:notice] = 'Registro creado con éxito.'
+
+        expire_page :controller => :home, :action => :index
+        expire_page :controller => :home, :action => :estadisticas
+        
         format.html { redirect_to(admin_pregunta_path(@pregunta)) }
         format.xml  { render :xml => @pregunta, :status => :created, :location => @pregunta }
       else
@@ -63,6 +67,10 @@ class Admin::PreguntasController < ApplicationController
     respond_to do |format|
       if @pregunta.update_attributes(params[:pregunta])
         flash[:notice] = 'Registro actualizado con éxito.'
+
+        expire_page :controller => :home, :action => :index
+        expire_page :controller => :home, :action => :estadisticas
+        
         format.html { redirect_to(admin_pregunta_path(@pregunta)) }
         format.xml  { head :ok }
       else
@@ -78,6 +86,10 @@ class Admin::PreguntasController < ApplicationController
 
     respond_to do |format|
       if @pregunta.destroy
+
+        expire_page :controller => :home, :action => :index
+        expire_page :controller => :home, :action => :estadisticas
+        
         format.html { redirect_to(admin_preguntas_url) }
         format.xml  { head :ok }
       else
