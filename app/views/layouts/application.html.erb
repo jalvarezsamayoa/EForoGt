@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <%= stylesheet_link_tag 'flutie.css', 'formtastic.css',
         'blueprint/screen.css', 'tablas.css', 'buttons.css',
-    'application.css', :cache => true %>
+    'application.css', :cache => "cache/all" %>
     <%= yield :head %>
   </head>
   <body>
@@ -13,7 +13,7 @@
       <%= yield %>
     </div>
     <div id="footer">
-      <%= javascript_include_tag 'jquery.min.js', 'jquery-ui.js', 'jquery_ujs.js', :cache => true  %>
+      <%= javascript_include_tag 'jquery.min.js', 'jquery-ui.js', 'jquery_ujs.js', :cache => "chache/all"  %>
       <%= csrf_meta_tag %>
       <%= yield :footer %>
     </div>

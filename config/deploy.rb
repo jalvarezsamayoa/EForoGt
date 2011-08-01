@@ -40,25 +40,15 @@ namespace :deploy do
   end
 end
 
-#after "deploy:update_code", "cache:clear"
-#after "deploy:finalize_update", "socky:restart"
-
+after "deploy:update_code", "cache:clear"
   
 namespace :cache do
   desc "Flush memcached"
   task :clear, :role => :app do
-    run "cd #{deploy_to}/current && bundle exec rake cache:clear RAILS_ENV=#{rails_env}"
+    run "cd #{deploy_to}/current && bundle exec rake cache:clear"
   end
 end
 
-namespace :socky do
-  desc "Restart Socky server"
-  task :restart, :role => :app do
-    run "ln -nfs #{shared_path}/config/socky_production.yml #{release_path}/config/socky.yml"
-    run "ln -nfs #{shared_path}/config/socky_hosts_production.yml #{release_path}/config/socky_hosts.yml"
-  run "cd #{release_path} && socky -c #{deploy_to}/current/config/socky.yml -d"
-  end
-end
 
 
 namespace :db do
