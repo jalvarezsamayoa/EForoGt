@@ -24,7 +24,7 @@ class Evento
 
   def self.siguiente_pregunta(guardar_estado = true)
     PromedioCandidato.guardar_estado_actual if guardar_estado
-    
+
     e =  Evento.last
 
     n =  Pregunta.count
@@ -38,7 +38,7 @@ class Evento
       return false
     else
       Promedio.reset(false)
-      
+
       e.pregunta = siguiente_pregunta.id.to_s
       e.candidato = Candidato.first(:order => "codigo").id.to_s
       e.save
@@ -47,7 +47,7 @@ class Evento
 
   def self.siguiente_candidato
     PromedioCandidato.guardar_estado_actual
-    
+
     e =  Evento.last
     n = Candidato.count
     candidato_actual = Candidato.find(e.candidato)
@@ -63,6 +63,18 @@ class Evento
       e.candidato = siguiente_candidato.id.to_s
       e.save
     end
+  end
+
+  def self.set_pregunta(pregunta_id)
+    PromedioCandidato.guardar_estado_actual
+
+    e =  Evento.last
+    Promedio.reset(false)
+    
+    e.pregunta = pregunta_id
+    e.candidato = Candidato.first(:order => "codigo").id.to_s
+    e.save
+
   end
 
 

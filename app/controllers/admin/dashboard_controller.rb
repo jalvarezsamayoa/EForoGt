@@ -6,6 +6,7 @@ class Admin::DashboardController < ApplicationController
     @evento = Evento.last
     @preguntas = Pregunta.all(:order => "orden")
     @candidatos = Candidato.all(:order => "codigo")
+    @pregunta = Pregunta.new
   end
 
   def siguiente_pregunta

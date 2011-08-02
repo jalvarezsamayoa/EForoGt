@@ -14,7 +14,6 @@
       = form.input :estado, :as => :select, :collection => [['Inactivo', 0], ['Activo', 1], ['Finalizado', 2]]
     = buttons_update(admin_eventos_path)
 
-
 %h2 Cambiar Pregunta Actual
 .mantform
   = semantic_form_for @evento, :url => admin_evento_path(@evento) do |form|
@@ -28,4 +27,10 @@
     = form.inputs do
       = form.input :candidato, :as => :select, :collection => @candidatos
     = buttons_update(admin_eventos_path)
-      
+
+%h2 Agregar nueva pregunta
+.mantform
+  = semantic_form_for @pregunta, :url => admin_preguntas_path do |form|
+    = form.inputs do
+      = form.input :texto, :as => :text
+    = buttons_update(admin_eventos_path)      

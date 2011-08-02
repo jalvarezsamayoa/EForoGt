@@ -27,14 +27,35 @@ function update_event(estado){
 };
 
 function update_question(pregunta){
+  var nueva_pregunta = '';
+
   if (pregunta == '0' || pregunta == '') {
     $("#preguntas").hide();
     $("#no-hay-pregunta").fadeIn('slow');
   } else {
+
     $(".pregunta").hide();
     $("#no-hay-pregunta").hide();
-    $("#"+pregunta).fadeIn('slow');
-    $("#preguntas").show();
+
+    //verificar si existe pregunta
+    if ($('#'+pregunta).length == 0) {
+      // obtener nueva pregunta y agregarla
+      $.ajax({url: 'home/pregunta.json?pregunta_id='+pregunta,
+              success: function(data) {
+                nueva_pregunta = '<li class="pregunta" id="' + data.id + '\" style="display: none;\">'
+                nueva_pregunta += data.orden + '. ' + data.texto
+                nueva_pregunta += '</li>'
+                $("div#pregunta-actual ol#preguntas").append(nueva_pregunta);
+                $("#preguntas").show();
+                $("#"+data.id).fadeIn('slow');
+              },
+              datatype: 'json'
+             });
+    } else {
+       $("#preguntas").show();
+      $("#"+pregunta).fadeIn('slow');
+    }
+
 
     // actualizar form para envio de opinion
     $("#voto_pregunta").val(pregunta);
@@ -117,7 +138,6 @@ function set_estado_evento(data){
     }
 
 
-
     if ( $("#pregunta_actual").val() != data.pregunta ||  $("#pregunta_actual").val() == '') {
       update_question(data.pregunta);
     }
@@ -149,8 +169,8 @@ function setup(){
 
   $("form#new_voto").submit(function(){
     if ($("#voto_puntaje").val() == "") {
-            alert('Debe seleccion una calificación para continuar.');
-    return false;
+      alert('Debe seleccion una calificación para continuar.');
+      return false;
     } else {
       return true;
     }

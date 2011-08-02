@@ -46,6 +46,13 @@ class Admin::PreguntasController < ApplicationController
   def create
     @pregunta = Pregunta.new(params[:pregunta])
 
+    if @pregunta.orden.nil?
+      back_to_dashboard = true
+      @pregunta.orden = Pregunta.last(:order => :orden).orden + 1
+    else
+      back_to_dashbard = false
+    end
+
     respond_to do |format|
       if @pregunta.save
         flash[:notice] = 'Registro creado con éxito.'
@@ -54,7 +61,14 @@ class Admin::PreguntasController < ApplicationController
         expire_action :controller => "/home", :action => :estadisticas
 
 
-        format.html { redirect_to(admin_pregunta_path(@pregunta)) }
+        format.html {
+          if back_to_dashboard == true
+            Evento.set_pregunta(@pregunta.id)
+            redirect_to dashboard_path
+          else
+            redirect_to(admin_pregunta_path(@pregunta))
+          end
+        }
         format.xml  { render :xml => @pregunta, :status => :created, :location => @pregunta }
       else
         format.html { render :action => "new" }

@@ -3,6 +3,7 @@ Eforo::Application.routes.draw do
   get "home/index"
   post "home/votar"
   get "home/estado"
+  get "home/pregunta"
   get "home/estadisticas"
   get "home/acercade"
   get "home/licenciamiento"
