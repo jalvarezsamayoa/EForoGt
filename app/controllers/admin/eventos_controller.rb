@@ -2,10 +2,7 @@
 class Admin::EventosController < ApplicationController
   layout 'admin'
   before_filter :authenticate_htaccess
-  
-  # access_control do
-  #   allow :administrador
-  # end
+
 
   def index
  
@@ -69,14 +66,15 @@ class Admin::EventosController < ApplicationController
       else        
         params[:evento][:candidato] = Candidato.first(:order => "codigo").id.to_s if params[:evento][:pregunta]
 
-         PromedioCandidato.guardar_estado_actual
+        PromedioCandidato.guardar_estado_actual
       end
       
       if @evento.update_attributes(params[:evento])
 
         Promedio.reset(false)
 
-        expire_page :controller => "/home", :action => :estadisticas
+        expire_action :controller => '/home', :action => 'index'
+        expire_action :controller => '/home', :action => "estadisticas"
         
         format.html { redirect_to(admin_dashboard_path) }
       
@@ -102,13 +100,13 @@ class Admin::EventosController < ApplicationController
 
 
   def reset
-    Evento.delete_all
     PromedioCandidato.reset
     Promedio.reset
+    Evento.delete_all
     Evento.create(:estado => 0, :pregunta => Pregunta.first(:order => "codigo").id, :candidato => Candidato.first.id)
      
-    expire_page :controller => "/home", :action => :index
-    expire_page :controller => "/home", :action => :estadisticas
+    expire_action :controller => '/home', :action => 'index'
+    expire_action :controller => '/home', :action => "estadisticas"
     
     flash[:notice] = "Votos reiniciados con exito."
     

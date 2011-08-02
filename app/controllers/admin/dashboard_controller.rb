@@ -1,7 +1,7 @@
 class Admin::DashboardController < ApplicationController
   layout 'admin'
   before_filter :authenticate_htaccess
-  
+
   def show
     @evento = Evento.last
     @preguntas = Pregunta.all(:order => "orden")
@@ -10,9 +10,8 @@ class Admin::DashboardController < ApplicationController
 
   def siguiente_pregunta
     Evento.siguiente_pregunta
-
-    expire_page :controller => "/home", :action => :estadisticas
-  
+    expire_action :controller => '/home', :action => 'index'
+    expire_action :controller => '/home', :action => "estadisticas"
     redirect_to(admin_dashboard_path)
   end
 
@@ -20,10 +19,9 @@ class Admin::DashboardController < ApplicationController
     unless Evento.siguiente_candidato
       Evento.siguiente_pregunta(false)
     end
-
-    expire_page :controller => "/home", :action => :estadisticas
-    
+    expire_action :controller => '/home', :action => 'index'
+    expire_action :controller => '/home', :action => "estadisticas"
     redirect_to(admin_dashboard_path)
   end
-  
+
 end

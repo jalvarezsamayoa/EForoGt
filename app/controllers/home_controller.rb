@@ -2,8 +2,8 @@ class HomeController < ApplicationController
 
   caches_page :acerca_de
   caches_page :licenciamiento
-  caches_page :index
-  caches_page :estadisticas
+  caches_action :index
+  caches_action :estadisticas
   
   def index
     @login = Time.now.to_i

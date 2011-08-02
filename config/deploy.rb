@@ -22,7 +22,7 @@ set :branch, "master"
 set :deploy_env, 'production'
 set :rails_env, "production"
 
-set :location, "ec2-184-72-81-42.compute-1.amazonaws.com"
+set :location, "ec2-184-73-9-143.compute-1.amazonaws.com"
 
 role :web, location
 role :app, location
