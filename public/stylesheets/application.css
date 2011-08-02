@@ -61,6 +61,10 @@ div.container {
     margin-right: 5px;
 }
 
+#sidebar #logo {
+    text-align: center;
+}
+
 /*--------------------------------------------*/
 /* pregunta actual */
 /*--------------------------------------------*/
